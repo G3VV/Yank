@@ -20,5 +20,5 @@ async def serve_audio(id):
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
 
-if __name__ == '__main__':
+if __name__ == 'Yank':
     app.run('0.0.0.0', port=port)
