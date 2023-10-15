@@ -6,7 +6,7 @@ import threading
 import re
 import os
 
-app = Quart("Yank")
+app = Quart(__name__)
 
 load_dotenv()
 port = os.environ.get("port")
@@ -20,5 +20,5 @@ async def serve_audio(id):
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
 
-
-app.run('0.0.0.0', port=port)
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=port)
