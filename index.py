@@ -6,7 +6,7 @@ import threading
 import re
 import os
 
-app = Quart(__name__)
+app = Quart("Yank")
 
 load_dotenv()
 port = os.environ.get("port")
