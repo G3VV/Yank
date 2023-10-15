@@ -9,7 +9,7 @@ Yank is a lightweight online spotify song downloader with easy setup.
 - **Download Spotify Songs**: Yank enables you to download songs directly from Spotify.
 - **Song Caching**: Yank caches songs to prevent unnecessary API calls and to speed up the download process.
 - **High Quality Audio**: Yank downloads songs in high-quality audio formats for an optimal listening experience.
-- **Metadata Retrieval**: Yank fetches metadata information like artist, album, and track name to ensure accurate file organization.
+- **Metadata Retrieval**: Yank fetches metadata information like artist, album, and track name.
 
 ## Prerequisites
 
