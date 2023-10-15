@@ -1,4 +1,4 @@
-![image](https://github.com/G3VV/Yank/assets/46306494/77ad74f5-4fb8-4865-9ecc-48fa42771a18)
+![image](https://github.com/G3VV/Yank/assets/46306494/b71939a5-27c7-449e-9913-6a710554dc2c)
 
 # Yank
 
