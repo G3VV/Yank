@@ -1,3 +1,5 @@
+![image](https://github.com/G3VV/Yank/assets/46306494/77ad74f5-4fb8-4865-9ecc-48fa42771a18)
+
 # Yank
 
 Yank is a lightweight online spotify song downloader with easy setup.
