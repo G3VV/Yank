@@ -15,6 +15,10 @@ Yank is a lightweight online spotify song downloader with easy setup.
 - **Spotify Developer Account**: You'll need to create a Spotify Developer account and obtain API credentials.
 - **Deezer ARL**: You'll need your accounts ARL, usually stored in the cookies of the Deezer website.
 
+## Try it yourself!
+1. Head to https://yank.g3v.co.uk/track/7iClDFej8POrB7757pJsd7
+2. Replace `7iClDFej8POrB7757pJsd7` with a spotify song ID and wait for it to download.
+
 ## Installation
 
 1. Clone the repository:
