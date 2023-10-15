@@ -72,5 +72,4 @@ def download_track(track_id, isrc):
 
     print(f"[{isrc}] Starting download")
     track["download"](download_dir, quality=track_formats.MP3_320, filename=isrc, with_lyrics=False, show_message=False)
-    print(track)
     print(f"[{isrc}] Finished download")
