@@ -1,0 +1,3 @@
+quart
+httpx
+python-dotenv
