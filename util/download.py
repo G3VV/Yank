@@ -70,7 +70,7 @@ async def start(id):
 async def start_playlist(id):
     async def zip_folder(source_folder, output_filename):
         print("Zipping playlist")
-        shutil.make_archive(output_filename, 'zip', source_folder)
+        shutil.make_archive(output_filename, 'zip', source_folder, source_folder)
         print("Zipped playlist")
 
     isrc = id
@@ -98,7 +98,7 @@ async def start_playlist(id):
         #return deezer_ids
 
         source_folder = f'/music/{id}'
-        output_filename = f'/zip/{id}.zip'
+        output_filename = f'/zip/'
 
 
 
