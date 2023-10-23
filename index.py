@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import threading
 import re
 import os
+import json
 
 app = Quart(__name__)
 
@@ -14,8 +15,13 @@ port = os.environ.get("port")
 @app.route('/track/<string:id>')
 async def serve_audio(id):
     filename = await start(id)
-    file_path = filename
-    return await send_file(file_path, mimetype='audio/mpeg')
+    return await send_file(filename, mimetype='audio/mpeg')
+
+@app.route('/playlist/<string:id>')
+async def serve_playlist(id):
+    filename = await start_playlist(id)
+    # return json
+    return json.dumps(filename)
 
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()

@@ -46,3 +46,12 @@ async def spotify_isrc(track_id):
                 response = httpx.get(endpoint, headers=headers)
                 track = response.json()
                 return track
+
+async def spotify_playlist(playlist_id):
+                endpoint = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+                headers = {
+                    "Authorization": f"Bearer {access_token}",
+                }
+                response = httpx.get(endpoint, headers=headers)
+                playlist = response.json()
+                return playlist

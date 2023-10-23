@@ -64,6 +64,47 @@ async def start(id):
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
         return "none"
 
+async def start_playlist(id):
+    isrc = id
+    try:
+
+        try:
+            track = await spotify_isrc(isrc)
+            return track
+        except Exception as e:
+            print("Spotify token expired or couldn't find isrc")
+            print(" ")
+            print(e)
+            return "none"
+
+        if 'isrc' in track['external_ids']:
+            isrc = track['external_ids']['isrc']
+        else:
+            isrc = "ISRC not available"
+            print("Song not found")
+            return "none"
+
+        j = await get_deezer_track(isrc)
+        pathfile = Path(f"./music/{isrc}.mp3")
+
+        if pathfile.is_file():
+            print(f"[{isrc}] Already cached")
+            return pathfile
+        else:
+            print(f"[{isrc}] Not cached")
+            try:
+                track_id = j["id"]
+            except:
+                print("Couldn't find song on deezer")
+                return "none"
+            loop = asyncio.get_event_loop()
+            download_track(track_id, isrc)
+            return pathfile
+
+    except Exception as e:
+        print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
+        return "none"
+
 
 
 def download_track(track_id, isrc):
