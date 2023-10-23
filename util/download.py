@@ -68,10 +68,14 @@ async def start(id):
         return "none"
 
 async def start_playlist(id):
-    async def zip_folder(source_folder, output_filename):
-        print("Zipping playlist")
-        shutil.make_archive(output_filename, 'zip', '/zip', source_folder)
-        print("Zipped playlist")
+    def zip_folder(folder_path, output_path):
+        print(f"[playlist] Zipping folder {folder_path} to {output_path}")
+        with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files in os.walk(folder_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    arcname = os.path.relpath(file_path, folder_path)
+                    zipf.write(file_path, arcname)
 
     isrc = id
     try:
@@ -97,15 +101,15 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        source_folder = f'/music/{id}'
-        output_filename = f'/zip/'
+        folder_to_zip = f'/music/{id}/'
+        output_zip_file = f'/zip/{id}.zip'
 
 
 
         download_playlist(deezer_ids, id)
 
-        await zip_folder(source_folder, output_filename)
-        return output_filename
+        zip_folder(folder_to_zip, output_zip_file)
+        return output_zip_file
 
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
