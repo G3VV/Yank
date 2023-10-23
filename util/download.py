@@ -95,7 +95,7 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        source_folder = f'/music/{id}/'
+        source_folder = f'/music/{id}'
         output_filename = f'/zip/{id}.zip'
 
 
@@ -103,7 +103,7 @@ async def start_playlist(id):
         download_playlist(deezer_ids, id)
 
         zip_folder(source_folder, output_filename)
-        return output_zip_file
+        return output_filename
 
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
