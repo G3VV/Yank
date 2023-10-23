@@ -68,8 +68,10 @@ async def start(id):
         return "none"
 
 async def start_playlist(id):
-    def zip_folder(source_folder, output_filename):
+    async def zip_folder(source_folder, output_filename):
+        print("Zipping playlist")
         shutil.make_archive(output_filename, 'zip', source_folder)
+        print("Zipped playlist")
 
     isrc = id
     try:
@@ -102,7 +104,7 @@ async def start_playlist(id):
 
         download_playlist(deezer_ids, id)
 
-        zip_folder(source_folder, output_filename)
+        await zip_folder(source_folder, output_filename)
         return output_filename
 
     except Exception as e:
