@@ -12,7 +12,7 @@ import base64
 import os
 import sys
 import json
-import shutile
+import shutil
 
 
 load_dotenv()
