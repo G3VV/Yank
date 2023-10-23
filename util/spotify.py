@@ -54,4 +54,10 @@ async def spotify_playlist(playlist_id):
                 }
                 response = httpx.get(endpoint, headers=headers)
                 playlist = response.json()
-                return playlist
+                song_isrcs = []
+                for i in playlist['items']:
+                    try:
+                        song_isrcs.append(i['track']['external_ids']['isrc'])
+                    except:
+                        pass
+                return song_isrcs

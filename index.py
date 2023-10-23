@@ -1,6 +1,6 @@
 from quart import Quart, send_file
 from util.spotify import start_token_thread
-from util.download import start
+from util.download import start, start_playlist
 from dotenv import load_dotenv
 import threading
 import re
@@ -21,7 +21,7 @@ async def serve_audio(id):
 async def serve_playlist(id):
     filename = await start_playlist(id)
     # return json
-    return json.dumps(filename)
+    return {"data": filename}
 
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()

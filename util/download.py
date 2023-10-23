@@ -1,4 +1,4 @@
-from util.spotify import spotify_isrc
+from util.spotify import spotify_isrc, spotify_playlist
 from util.deezer import get_deezer_track
 from dotenv import load_dotenv
 from pathlib import Path
@@ -69,37 +69,31 @@ async def start_playlist(id):
     try:
 
         try:
-            track = await spotify_isrc(isrc)
-            return track
+            playlist_isrcs = await spotify_playlist(isrc)
         except Exception as e:
             print("Spotify token expired or couldn't find isrc")
             print(" ")
             print(e)
             return "none"
 
-        if 'isrc' in track['external_ids']:
-            isrc = track['external_ids']['isrc']
-        else:
-            isrc = "ISRC not available"
-            print("Song not found")
-            return "none"
+        deezer_ids = []
+
+        for index in range(len(playlist_isrcs)):
+            try:
+                j = await get_deezer_track(playlist_isrcs[index])
+                print(j["id"])
+                deezer_ids.append(f'{j["id"]}')
+            except:
+                print("Couldn't find song on deezer")
+                continue
+
+        #return deezer_ids
 
         j = await get_deezer_track(isrc)
         pathfile = Path(f"./music/{isrc}.mp3")
 
-        if pathfile.is_file():
-            print(f"[{isrc}] Already cached")
-            return pathfile
-        else:
-            print(f"[{isrc}] Not cached")
-            try:
-                track_id = j["id"]
-            except:
-                print("Couldn't find song on deezer")
-                return "none"
-            loop = asyncio.get_event_loop()
-            download_track(track_id, isrc)
-            return pathfile
+        download_playlist(deezer_ids, id)
+        return pathfile
 
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
@@ -114,3 +108,12 @@ def download_track(track_id, isrc):
     print(f"[{isrc}] Starting download")
     track["download"](download_dir, quality=track_formats.MP3_320, filename=isrc, with_lyrics=False, show_message=False)
     print(f"[{isrc}] Finished download")
+
+def download_playlist(id_list, playlist_id):
+    print(f"[playlist] Starting download")
+
+    download_dir = f"./music/{playlist_id}/"
+    downloader = Downloader(deezer, id_list, download_dir, quality=track_formats.MP3_320, concurrent_downloads=25)
+    downloader.start()
+
+    print(f"[playlist] Finished download")
