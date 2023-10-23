@@ -12,7 +12,8 @@ import base64
 import os
 import sys
 import json
-import zipfile
+import shutil
+
 
 load_dotenv()
 download_dir = "./music/"
@@ -67,13 +68,8 @@ async def start(id):
         return "none"
 
 async def start_playlist(id):
-    def zip_folder(folder_path, output_path):
-        with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for root, dirs, files in os.walk(folder_path):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    arcname = os.path.relpath(file_path, folder_path)
-                    zipf.write(file_path, arcname)
+    def zip_folder(source_folder, output_filename):
+        shutil.make_archive(output_filename, 'zip', source_folder)
 
     isrc = id
     try:
@@ -99,14 +95,14 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        folder_to_zip = f'/music/{id}/'
-        output_zip_file = f'/zip/{id}.zip'
+        source_folder = f'/music/{id}/'
+        output_filename = f'/zip/{id}.zip'
 
 
 
         download_playlist(deezer_ids, id)
 
-        zip_folder(folder_to_zip, output_zip_file)
+        zip_folder(source_folder, output_filename)
         return output_zip_file
 
     except Exception as e:
