@@ -100,7 +100,7 @@ async def start_playlist(id):
         #return deezer_ids
 
         folder_to_zip = f'./music/{id}/'
-        output_zip_file = f'./zip/{id}/'
+        output_zip_file = f'./zip/{id}.zip'
 
 
         download_playlist(deezer_ids, id)
