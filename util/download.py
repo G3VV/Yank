@@ -69,7 +69,7 @@ async def start(id):
 
 async def start_playlist(id):
     def zip_folder(folder_path, output_path):
-        shutil.make_archive(output_path, 'zip', folder_path)
+        shutil.make_archive(folder_path, 'zip', output_path)
 
 
     isrc = id
