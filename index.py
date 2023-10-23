@@ -21,7 +21,7 @@ async def serve_audio(id):
 async def serve_playlist(id):
     filename = await start_playlist(id)
     # return json
-    return {"data": filename}
+    return await send_file(filename, as_attachment=True, attachment_filename='playlist.zip', mimetype='application/zip')
 
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()

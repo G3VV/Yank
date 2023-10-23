@@ -12,6 +12,7 @@ import base64
 import os
 import sys
 import json
+import zipfile
 
 load_dotenv()
 download_dir = "./music/"
@@ -23,6 +24,14 @@ try:
     print("Logged into Deezer")
 except:
     print("Error logging into Deezer")
+
+def zip_folder(folder_path, output_path):
+    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, folder_path)
+                zipf.write(file_path, arcname)
 
 async def start(id):
     isrc = id
@@ -89,11 +98,15 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        j = await get_deezer_track(isrc)
-        pathfile = Path(f"./music/{isrc}.mp3")
+        folder_to_zip = f'/music/{id}'
+        output_zip_file = f'/zip/{id}.zip'
+
+
 
         download_playlist(deezer_ids, id)
-        return pathfile
+
+        zip_folder(folder_to_zip, output_zip_file)
+        return output_zip_file
 
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
