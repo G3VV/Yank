@@ -68,6 +68,8 @@ async def start(id):
         return "none"
 
 async def start_playlist(id):
+    folder_to_zip = f'./music/{id}/'
+    output_zip_file = f'./zip/{id}'
     def zip_folder(folder_path, output_path):
         print(f"[playlist] Zipping folder {folder_path} to {output_path}")
         #zip a folder from the given path and save it to the output path
@@ -77,6 +79,8 @@ async def start_playlist(id):
 
     isrc = id
     try:
+        if os.path.exists(folder_to_zip):
+            return output_zip_file + ".zip"
 
         try:
             playlist_isrcs = await spotify_playlist(isrc)
@@ -99,8 +103,6 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        folder_to_zip = f'./music/{id}/'
-        output_zip_file = f'./zip/{id}'
 
 
         download_playlist(deezer_ids, id)
