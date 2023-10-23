@@ -70,6 +70,7 @@ async def start(id):
 async def start_playlist(id):
     def zip_folder(folder_path, output_path):
         print(f"[playlist] Zipping folder {folder_path} to {output_path}")
+        #zip a folder from the given path and save it to the output path
         shutil.make_archive(output_path, 'zip', folder_path)
         print(f"[playlist] Finished zipping folder {folder_path} to {output_path}")
 
@@ -98,8 +99,8 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        folder_to_zip = f'/music/{id}/'
-        output_zip_file = f'/zip/'
+        folder_to_zip = f'./music/{id}/'
+        output_zip_file = f'./zip/'
 
 
         download_playlist(deezer_ids, id)
