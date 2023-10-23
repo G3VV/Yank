@@ -106,7 +106,7 @@ async def start_playlist(id):
         download_playlist(deezer_ids, id)
 
         zip_folder(folder_to_zip, output_zip_file)
-        return output_zip_file
+        return output_zip_file + ".zip"
 
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
