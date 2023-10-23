@@ -69,13 +69,8 @@ async def start(id):
 
 async def start_playlist(id):
     def zip_folder(folder_path, output_path):
-        print(f"[playlist] Zipping folder {folder_path} to {output_path}")
-        with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for root, dirs, files in os.walk(folder_path):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    arcname = os.path.relpath(file_path, folder_path)
-                    zipf.write(file_path, arcname)
+        shutil.make_archive(output_path, 'zip', folder_path)
+
 
     isrc = id
     try:
@@ -101,8 +96,8 @@ async def start_playlist(id):
 
         #return deezer_ids
 
-        folder_to_zip = f'/music/{id}/'
-        output_zip_file = f'/zip/'
+        folder_to_zip = f'/music/{id}'
+        output_zip_file = f'/zip'
 
 
 
