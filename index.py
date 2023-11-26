@@ -17,10 +17,13 @@ async def serve_audio(id):
     filename = await start(id)
     return await send_file(filename, mimetype='audio/mpeg')
 
+@app.route('/')
+async def serve_index():
+    return "online"
+
 @app.route('/playlist/<string:id>')
 async def serve_playlist(id):
     filename = await start_playlist(id)
-    # return json
     return await send_file(filename, as_attachment=True, attachment_filename='playlist.zip', mimetype='application/zip')
 
 token_thread = threading.Thread(target=start_token_thread)

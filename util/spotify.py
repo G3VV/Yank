@@ -15,7 +15,6 @@ def start_token_thread():
     client_id = spotify_id
     client_secret = spotify_secret
     
-    # Replace with your actual client_id and client_secret
     get_access_token(client_id, client_secret)
 
 def get_access_token(client_id, client_secret):
@@ -32,7 +31,7 @@ def get_access_token(client_id, client_secret):
             response = httpx.post(access_token_url, headers=headers, data=data)
             access_token = response.json()["access_token"]
             
-            print("Access token retrieved successfully!")
+            #print("Access token retrieved successfully!")
         
         except Exception as e:
             print(f"Error retrieving access token: {str(e)}")
