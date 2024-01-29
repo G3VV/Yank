@@ -22,6 +22,7 @@ Yank is a lightweight online spotify song downloader with easy setup.
 2. Replace `7iClDFej8POrB7757pJsd7` with a Spotify song ID and wait for it to download.
 
 > Want to download a playlist?
+
 1. Head to https://yank.g3v.co.uk/playlist/6V1papmDzwR16G3PBZEjTI
 2. Replace `6V1papmDzwR16G3PBZEjTI` with a Spotify playlist ID and wait for it to download.
 - Can take significantly longer depending on the playlist size, currently limited to 100 songs.
