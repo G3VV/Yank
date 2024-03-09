@@ -35,7 +35,7 @@ def get_access_token(client_id, client_secret):
         
         except Exception as e:
             print(f"Error retrieving access token: {str(e)}")
-        time.sleep(3600/4)
+        time.sleep(600)
 
 async def spotify_isrc(track_id):
                 endpoint = f"https://api.spotify.com/v1/tracks/{track_id}"
