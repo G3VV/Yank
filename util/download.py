@@ -67,6 +67,10 @@ async def start_playlist(id):
     folder_to_zip = f'./music/{id}/'
     output_zip_file = f'./zip/{id}'
     isrc = id
+    def delete_temporary_folder(folder_path):
+        print(f"[playlist] Deleting temporary folder {folder_path}")
+        shutil.rmtree(folder_path)
+        print(f"[playlist] Finished deleting temporary folder {folder_path}")
     def delete_lyrics(folder_path):
         print(f"[playlist] Deleting lyrics from {folder_path}")
         for filename in os.listdir(folder_path):
@@ -99,6 +103,7 @@ async def start_playlist(id):
         download_playlist(deezer_ids, id)
         delete_lyrics(folder_to_zip)
         zip_folder(folder_to_zip, output_zip_file)
+        delete_temporary_folder(folder_to_zip)
         return output_zip_file + ".zip"
     except Exception as e:
         print(f"{e} at line {sys.exc_info()[-1].tb_lineno}")
