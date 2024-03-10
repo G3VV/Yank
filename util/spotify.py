@@ -11,10 +11,8 @@ spotify_secret = os.environ.get("spotify_secret")
 access_token = None
 
 def start_token_thread():
-    
     client_id = spotify_id
     client_secret = spotify_secret
-    
     get_access_token(client_id, client_secret)
 
 def get_access_token(client_id, client_secret):
@@ -30,8 +28,6 @@ def get_access_token(client_id, client_secret):
             
             response = httpx.post(access_token_url, headers=headers, data=data)
             access_token = response.json()["access_token"]
-            
-            #print("Access token retrieved successfully!")
         
         except Exception as e:
             print(f"Error retrieving access token: {str(e)}")
@@ -47,16 +43,26 @@ async def spotify_isrc(track_id):
                 return track
 
 async def spotify_playlist(playlist_id):
-                endpoint = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-                headers = {
-                    "Authorization": f"Bearer {access_token}",
-                }
-                response = httpx.get(endpoint, headers=headers)
-                playlist = response.json()
-                song_isrcs = []
-                for i in playlist['items']:
-                    try:
-                        song_isrcs.append(i['track']['external_ids']['isrc'])
-                    except:
-                        pass
-                return song_isrcs
+    endpoint = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+    }
+    song_isrcs = []
+    offset = 0
+    limit = 100
+    while True:
+        params = {
+            "offset": offset,
+            "limit": limit
+        }
+        response = httpx.get(endpoint, headers=headers, params=params)
+        playlist = response.json()
+        for i in playlist['items']:
+            try:
+                song_isrcs.append(i['track']['external_ids']['isrc'])
+            except:
+                pass
+        offset += limit
+        if offset >= playlist['total']:
+            break
+    return song_isrcs

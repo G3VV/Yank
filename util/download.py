@@ -67,6 +67,12 @@ async def start_playlist(id):
     folder_to_zip = f'./music/{id}/'
     output_zip_file = f'./zip/{id}'
     isrc = id
+    def delete_lyrics(folder_path):
+        print(f"[playlist] Deleting lyrics from {folder_path}")
+        for filename in os.listdir(folder_path):
+            if filename.endswith(".lrc"):
+                os.remove(os.path.join(folder_path, filename))
+        print(f"[playlist] Finished deleting lyrics from {folder_path}")
     def zip_folder(folder_path, output_path):
         print(f"[playlist] Zipping folder {folder_path} to {output_path}")
         shutil.make_archive(output_path, 'zip', folder_path)
@@ -89,7 +95,9 @@ async def start_playlist(id):
             except:
                 print("Couldn't find song on deezer")
                 continue
+        print(f"[playlist] Found {len(deezer_ids)}/{len(playlist_isrcs)} songs")
         download_playlist(deezer_ids, id)
+        delete_lyrics(folder_to_zip)
         zip_folder(folder_to_zip, output_zip_file)
         return output_zip_file + ".zip"
     except Exception as e:
