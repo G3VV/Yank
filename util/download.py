@@ -87,7 +87,7 @@ async def start_playlist(id):
         try:
             playlist_isrcs = await spotify_playlist(isrc)
         except Exception as e:
-            print("Spotify token expired or couldn't find isrc")
+            print("Spotify token expired or couldn't find ISRC")
             print(" ")
             print(e)
             return "none"
@@ -97,7 +97,7 @@ async def start_playlist(id):
                 j = await get_deezer_track(playlist_isrcs[index])
                 deezer_ids.append(f'{j["id"]}')
             except:
-                print("Couldn't find song on deezer")
+                print("[playlist] Couldn't find song on Deezer")
                 continue
         print(f"[playlist] Found {len(deezer_ids)}/{len(playlist_isrcs)} songs")
         download_playlist(deezer_ids, id)
