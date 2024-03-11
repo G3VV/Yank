@@ -66,6 +66,7 @@ async def start(id):
 async def start_playlist(id):
     folder_to_zip = f'./music/{id}/'
     output_zip_file = f'./zip/{id}'
+    pathfile = Path(f"./zip/{id}.zip")
     isrc = id
     def delete_temporary_folder(folder_path):
         print(f"[playlist] Deleting temporary folder {folder_path}")
@@ -82,7 +83,7 @@ async def start_playlist(id):
         shutil.make_archive(output_path, 'zip', folder_path)
         print(f"[playlist] Finished zipping folder {folder_path} to {output_path}")
     try:
-        if os.path.isfile(output_zip_file + ".zip"):
+        if pathfile.is_file():
             return output_zip_file + ".zip"
         try:
             playlist_isrcs = await spotify_playlist(isrc)
