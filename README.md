@@ -71,3 +71,5 @@ python index.py
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+[![Star History Chart](https://api.star-history.com/svg?repos=G3VV/Yank&type=Date)](https://star-history.com/#G3VV/Yank&Date)
