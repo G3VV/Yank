@@ -82,7 +82,7 @@ async def start_playlist(id):
         shutil.make_archive(output_path, 'zip', folder_path)
         print(f"[playlist] Finished zipping folder {folder_path} to {output_path}")
     try:
-        if os.path.exists(folder_to_zip):
+        if os.path.isfile(output_zip_file + ".zip"):
             return output_zip_file + ".zip"
         try:
             playlist_isrcs = await spotify_playlist(isrc)
