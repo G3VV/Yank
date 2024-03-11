@@ -83,7 +83,9 @@ async def start_playlist(id):
         shutil.make_archive(output_path, 'zip', folder_path)
         print(f"[playlist] Finished zipping folder {folder_path} to {output_path}")
     try:
+        print(f"[playlist] Searching for songs in {id}")
         if pathfile.is_file():
+            print(f"[playlist] Already cached")
             return output_zip_file + ".zip"
         try:
             playlist_isrcs = await spotify_playlist(isrc)
@@ -98,7 +100,7 @@ async def start_playlist(id):
                 j = await get_deezer_track(playlist_isrcs[index])
                 deezer_ids.append(f'{j["id"]}')
             except:
-                print("[playlist] Couldn't find song on Deezer")
+                print(f"[playlist] Couldn't find song on Deezer ({playlist_isrcs[index]})")
                 continue
         print(f"[playlist] Found {len(deezer_ids)}/{len(playlist_isrcs)} songs")
         download_playlist(deezer_ids, id)
