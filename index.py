@@ -36,7 +36,15 @@ async def stats():
 
 @app.route('/')
 async def serve_index():
-    return "Online, use /track/<id> or /playlist/<id> to download tracks or playlists from Spotify."
+    return {
+        "message": "Online",
+        "github": "https://github.com/g3vv/yank",
+        "routes": {
+            "track": "/track/{song_id}",
+            "playlist": "/playlist/{playlist_id}",
+            "stats": "/stats"
+        }
+    }
 
 token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
