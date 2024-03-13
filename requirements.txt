@@ -2,3 +2,4 @@ quart
 httpx
 python-dotenv
 py-deezer
+hypercorn

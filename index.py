@@ -3,10 +3,13 @@ from util.spotify import start_token_thread
 from util.download import start, start_playlist
 from util.statistics import totalCaches, totalSongs, totalPlaylists
 from dotenv import load_dotenv
+from hypercorn.asyncio import serve
+from hypercorn.config import Config
 import threading
 import re
 import os
 import json
+import asyncio
 
 app = Quart(__name__)
 
@@ -42,4 +45,6 @@ token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=port)
+    config = Config()
+    config.bind = ["0.0.0.0:" + str(port)]
+    asyncio.run(serve(app, config))
