@@ -23,7 +23,7 @@ async def serve_playlist(id):
     filename = await start_playlist(id)
     return await send_file(filename, as_attachment=True, attachment_filename='playlist.zip', mimetype='application/zip')
 
-@app.route("/stats", name="Stats")
+@app.route("/stats")
 async def stats(request):
     return {
         "failed": False,
