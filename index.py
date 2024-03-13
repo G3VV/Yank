@@ -19,7 +19,14 @@ async def serve_audio(id):
     return await send_file(filename, mimetype='audio/mpeg')
 
 @app.route('/playlist/<string:id>')
-async def serve_playlist(id):
+async def serve_playlist(id):        
+    path = f"zip/{id}.zip"
+    if not os.path.exists(path):
+        await start_playlist(id)
+        return {
+            "failed": True,
+            "message": "Playlist is being downloaded, try again later."
+        }
     filename = await start_playlist(id)
     return await send_file(filename, as_attachment=True, attachment_filename='playlist.zip', mimetype='application/zip')
 
