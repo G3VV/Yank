@@ -12,12 +12,6 @@ Yank is a lightweight online spotify song downloader with easy setup.
 - **High Quality Audio**: Yank downloads songs in high-quality audio formats for an optimal listening experience.
 - **Metadata Retrieval**: Yank fetches metadata information like artist, album, and track name.
 
-## Prerequisites
-
-- **Python**: Yank is written in Python and requires Python 3.6 or higher to run.
-- **Spotify Developer Account**: You'll need to create a Spotify Developer account and obtain API credentials.
-- **Deezer ARL**: You'll need your accounts ARL, usually stored in the cookies of the Deezer website.
-
 ## Try it yourself!
 1. Head to https://yank.g3v.co.uk/track/3v0uXfyMEZ1lGvBOv1Y4ar
 2. Replace `3v0uXfyMEZ1lGvBOv1Y4ar` with a Spotify song ID and wait for it to download.
@@ -27,6 +21,12 @@ Yank is a lightweight online spotify song downloader with easy setup.
 1. Head to https://yank.g3v.co.uk/playlist/6V1papmDzwR16G3PBZEjTI
 2. Replace `6V1papmDzwR16G3PBZEjTI` with a Spotify playlist ID and wait for it to download.
 - Can take significantly longer depending on the playlist size.
+
+## Prerequisites
+
+- **Python**: Yank is written in Python and requires Python 3.6 or higher to run.
+- **Spotify Developer Account**: You'll need to create a Spotify Developer account and obtain API credentials.
+- **Deezer ARL**: You'll need your accounts ARL, usually stored in the cookies of the Deezer website.
 
 ## Installation
 
