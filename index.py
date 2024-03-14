@@ -17,23 +17,23 @@ port = os.environ.get("port")
 async def serve_audio(id):
     try:
         filename = await start(id)
-        return await send_file(filename, mimetype='audio/mpeg')
+        return await send_file(filename, mimetype='audio/mpeg'), 200
     except:
         return {
             "failed": True,
             "message": "Song not found"
-        }
+        }, 404
 
 @app.route('/playlist/<string:id>')
 async def serve_playlist(id):
     try:
         filename = await start_playlist(id)
-        return await send_file(filename, as_attachment=True, attachment_filename=f'{id}.zip', mimetype='application/zip')
+        return await send_file(filename, as_attachment=True, attachment_filename=f'{id}.zip', mimetype='application/zip'), 200
     except:
         return {
             "failed": True,
             "message": "Playlist not found"
-        }
+        }, 404
 
 @app.route("/stats")
 async def stats():
