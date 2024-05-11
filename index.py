@@ -50,6 +50,7 @@ async def stats():
 async def serve_index():
     return {
         "message": "Online",
+        "github": "https://github.com/g3vv/yank",
         "routes": {
             "track": "/track/{song_id}",
             "playlist": "/playlist/{playlist_id}",
