@@ -12,6 +12,7 @@ app = Quart(__name__)
 
 load_dotenv()
 port = os.environ.get("port")
+ip = os.environ.get("ip")
 
 @app.route('/track/<string:id>')
 async def serve_audio(id):
@@ -62,4 +63,4 @@ token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=port)
+    app.run(ip, port=port)
