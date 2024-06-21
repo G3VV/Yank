@@ -44,12 +44,13 @@ pip install -r requirements.txt
 ```
 
 3. Set up the `.env` file.
-```
+```env
 deezer_arl=DEEZER_ACCOUNT_ARL # Your deezer account ARL cookie or https://www.youtube.com/watch?v=QEpZlWanx8g
 spotify_id=SECRET_ID # spotify client id @ https://developer.spotify.com/dashboard
 spotify_secret=SPOTIFY_SECRET # spotify client secret @ https://developer.spotify.com/dashboard
 
 port = 7000 # Port to run the server on
+ip = 0.0.0.0 # keep as 0.0.0.0 for automatic selection
 ```
 
 ## Usage
