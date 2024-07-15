@@ -14,9 +14,9 @@ from cryptography.utils import CryptographyDeprecationWarning
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 load_dotenv()
 
+arl = os.environ.get("deezer_arl")
 DOWNLOAD_DIR = "./music/"
 ZIP_DIR = "./zip/"
-arl = os.environ.get("deezer_arl")
 
 try:
     print("Logging into Deezer...")
