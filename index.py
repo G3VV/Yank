@@ -1,4 +1,5 @@
 from quart import Quart, send_file
+from quart_cors import cors
 from util.spotify import start_token_thread
 from util.download import start, start_playlist
 from util.statistics import totalCaches, totalSongs, totalPlaylists
@@ -9,6 +10,7 @@ import os
 import json
 
 app = Quart(__name__)
+app = cors(app, allow_origin="*")
 
 load_dotenv()
 port = os.environ.get("port")
