@@ -3,3 +3,4 @@ httpx
 python-dotenv
 py-deezer
 hypercorn
+quart-cors
