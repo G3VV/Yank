@@ -2,7 +2,7 @@ from quart import Quart, send_file
 from quart_cors import cors
 from util.spotify import start_token_thread
 from util.download import start, start_playlist
-from util.statistics import totalCaches, totalSongs, totalPlaylists
+from util.statistics import totalCaches, totalSongs, totalPlaylists, totalSongData
 from dotenv import load_dotenv
 import threading
 import re
@@ -45,6 +45,7 @@ async def stats():
         "data": {
             "total": await totalCaches(),
             "songs": await totalSongs(),
+            "caches": await totalSongData(),
             "playlists": await totalPlaylists()
         }
     }
