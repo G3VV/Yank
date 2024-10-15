@@ -132,7 +132,7 @@ async def start_playlist(id):
                 with open(cache_file, 'w') as f:
                     json.dump(j, f)
             deezer_ids.append(str(j["id"]))
-        except:
+        except Exception as e:
             print(f"Couldn't find song on Deezer ({isrc})")
             continue
 
