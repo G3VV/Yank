@@ -76,7 +76,7 @@ async def start(id):
         if cache_file.is_file():
             print(f"[{isrc}] Found in cache")
             with open(cache_file, 'r') as f:
-                j = json.load(f)
+                j = json.dump(f)
         else:
             print(f"[{isrc}] Not found in cache, fetching from Deezer")
             j = await get_deezer_track(isrc)
