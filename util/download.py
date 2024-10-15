@@ -133,7 +133,7 @@ async def start_playlist(id):
                     json.dump(j, f)
             deezer_ids.append(str(j["id"]))
         except Exception as e:
-            print(f"Couldn't find song on Deezer ({isrc})")
+            print(f"Couldn't find song on Deezer ({isrc}) {e}")
             continue
 
     print(f"Found {len(deezer_ids)}/{len(playlist_isrcs)} songs")
