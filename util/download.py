@@ -3,6 +3,7 @@ import sys
 import shutil
 import asyncio
 import warnings
+import orjson as json
 from pathlib import Path
 from dotenv import load_dotenv
 from pydeezer import Deezer, Downloader
@@ -81,7 +82,7 @@ async def start(id):
             j = await get_deezer_track(isrc)
             with open(cache_file, 'w') as f:
                 json.dump(j, f)
-                
+
         pathfile = Path(f"./music/{isrc}.mp3")
         if pathfile.is_file():
             print(f"[{isrc}] Already cached")
