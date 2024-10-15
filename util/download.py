@@ -74,11 +74,11 @@ async def start(id):
 
         cache_file = Path(f"./cache/{isrc}.json")
         if cache_file.is_file():
-            print(f"[{isrc}] Found in cache")
+            print(f"[{isrc}] Found data in cache")
             with open(cache_file, 'r') as f:
                 j = json.load(f)
         else:
-            print(f"[{isrc}] Not found in cache, fetching from Deezer")
+            print(f"[{isrc}] Not found in data cache, fetching from Deezer")
             j = await get_deezer_track(isrc)
             with open(cache_file, 'w') as f:
                 json.dump(j, f)
@@ -123,11 +123,11 @@ async def start_playlist(id):
         try: # this is to stop deezer blocking requests
             cache_file = Path(f"./cache/{isrc}.json")
             if cache_file.is_file():
-                print(f"[{isrc}] Found in cache")
+                print(f"[{isrc}] Found in data cache")
                 with open(cache_file, 'r') as f:
                     j = json.dump(f)
             else:
-                print(f"[{isrc}] Not found in cache, fetching from Deezer")
+                print(f"[{isrc}] Not found in data cache, fetching from Deezer")
                 j = await get_deezer_track(isrc)
                 with open(cache_file, 'w') as f:
                     json.dump(j, f)
