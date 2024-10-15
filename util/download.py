@@ -71,7 +71,17 @@ async def start(id):
             print("Song not found")
             return "none"
 
-        j = await get_deezer_track(isrc)
+        cache_file = Path(f"./cache/{isrc}.json")
+        if cache_file.is_file():
+            print(f"[{isrc}] Found in cache")
+            with open(cache_file, 'r') as f:
+                j = json.load(f)
+        else:
+            print(f"[{isrc}] Not found in cache, fetching from Deezer")
+            j = await get_deezer_track(isrc)
+            with open(cache_file, 'w') as f:
+                json.dump(j, f)
+                
         pathfile = Path(f"./music/{isrc}.mp3")
         if pathfile.is_file():
             print(f"[{isrc}] Already cached")
@@ -109,8 +119,17 @@ async def start_playlist(id):
 
     deezer_ids = []
     for isrc in playlist_isrcs:
-        try:
-            j = await get_deezer_track(isrc)
+        try: # this is to stop deezer blocking requests
+            cache_file = Path(f"./cache/{isrc}.json")
+            if cache_file.is_file():
+                print(f"[{isrc}] Found in cache")
+                with open(cache_file, 'r') as f:
+                    j = json.load(f)
+            else:
+                print(f"[{isrc}] Not found in cache, fetching from Deezer")
+                j = await get_deezer_track(isrc)
+                with open(cache_file, 'w') as f:
+                    json.dump(j, f)
             deezer_ids.append(str(j["id"]))
         except:
             print(f"Couldn't find song on Deezer ({isrc})")
