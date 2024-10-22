@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import httpx
-import asyncio
+import time
 
 load_dotenv()
 arl = os.environ.get("deezer_arl")
@@ -11,8 +11,8 @@ cookies = {'arl': arl}
 
 async def get_deezer_track(isrc):
         while True:
-                response = await httpx.get('https://api.deezer.com/2.0/track/isrc:' + isrc, cookies=cookies, headers=headers)
+                response = httpx.get('https://api.deezer.com/2.0/track/isrc:' + isrc, cookies=cookies, headers=headers)
                 if response.status_code == 200:
                         return response.json()
                 else:
-                        await asyncio.sleep(15)
+                    await asyncio.sleep(15)
