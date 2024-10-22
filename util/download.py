@@ -24,7 +24,7 @@ try:
     deezer = Deezer(arl=arl)
     print("Logged into Deezer")
 except Exception as e:
-    print("Error logging into Deezer, check ARL is correct inside .env")
+    print("Error logging into Deezer, possibly ratelimited? make sure your ARL is correct.")
     sys.exit(1)
 
 def delete_temporary_folder(folder_path):
