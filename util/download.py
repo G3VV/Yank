@@ -17,6 +17,7 @@ load_dotenv()
 
 arl = os.environ.get("deezer_arl")
 DOWNLOAD_DIR = "./music/"
+CACHE_DIR = "./cache/"
 ZIP_DIR = "./zip/"
 
 try:

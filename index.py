@@ -1,9 +1,11 @@
 import os
 import threading
+from contextlib import suppress
+
 from dotenv import load_dotenv
 from quart import Quart, send_file
 from quart_cors import cors
-from util.download import start, start_playlist
+from util.download import CACHE_DIR, ZIP_DIR, DOWNLOAD_DIR, start, start_playlist
 from util.spotify import start_token_thread
 from util.statistics import totalCaches, totalSongs, totalPlaylists, totalSongData
 
@@ -64,4 +66,8 @@ token_thread = threading.Thread(target=start_token_thread)
 token_thread.start()
 
 if __name__ == '__main__':
+    for directory in {CACHE_DIR, ZIP_DIR, DOWNLOAD_DIR}:
+        with suppress(FileExistsError):
+            os.mkdir(directory)
+
     app.run(ip, port=port)
