@@ -1,22 +1,23 @@
+import json
 import os
 import sys
 import shutil
-import asyncio
 import warnings
-import json
 from pathlib import Path
+
+from cryptography.utils import CryptographyDeprecationWarning
 from dotenv import load_dotenv
 from pydeezer import Deezer, Downloader
 from pydeezer.constants import track_formats
 from util.spotify import spotify_isrc, spotify_playlist
 from util.deezer import get_deezer_track
-from cryptography.utils import CryptographyDeprecationWarning
 
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 load_dotenv()
 
 arl = os.environ.get("deezer_arl")
 DOWNLOAD_DIR = "./music/"
+CACHE_DIR = "./cache/"
 ZIP_DIR = "./zip/"
 
 try:

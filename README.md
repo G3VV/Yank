@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 3. Set up the `.env` file.
 ```env
-deezer_arl=DEEZER_ACCOUNT_ARL # Your deezer account ARL cookie or https://www.youtube.com/watch?v=QEpZlWanx8g
+deezer_arl=DEEZER_ACCOUNT_ARL # Your deezer account ARL cookie or https://www.youtube.com/watch?v=5bTwnPchjss
 spotify_id=SECRET_ID # spotify client id @ https://developer.spotify.com/dashboard
 spotify_secret=SPOTIFY_SECRET # spotify client secret @ https://developer.spotify.com/dashboard
 

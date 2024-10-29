@@ -1,3 +1,6 @@
+.idea/
 .env
-/music
+music/*
+cache/*
+zip/*
 */__pycache__/*
