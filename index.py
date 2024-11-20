@@ -7,7 +7,7 @@ from quart import Quart, send_file
 from quart_cors import cors
 from util.download import CACHE_DIR, ZIP_DIR, DOWNLOAD_DIR, start, start_playlist
 from util.spotify import start_token_thread
-from util.statistics import totalCaches, totalSongs, totalPlaylists, totalSongData
+from util.statistics import totalCaches, totalSongs, totalPlaylists, totalSongData, totalStorage, songStorage, playlistStorage, cacheStorage
 
 app = Quart(__name__)
 app = cors(app, allow_origin="*")
@@ -47,6 +47,12 @@ async def stats():
             "songs": await totalSongs(),
             "caches": await totalSongData(),
             "playlists": await totalPlaylists()
+        },
+        "storage": {
+            "total": await totalStorage(),
+            "songs": await songStorage(),
+            "playlists": await playlistStorage(),
+            "caches": await cacheStorage()
         }
     }
 
