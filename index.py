@@ -13,8 +13,8 @@ app = Quart(__name__)
 app = cors(app, allow_origin="*")
 
 load_dotenv()
-port = os.environ.get("port")
-ip = os.environ.get("ip")
+port = os.environ.get("PORT")
+ip = os.environ.get("IP")
 
 @app.route('/track/<string:id>')
 async def serve_audio(id):
