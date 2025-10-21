@@ -26,15 +26,17 @@ async def downloadPlaylist(id: str = None):
 
 @app.get("/", description="Got Root?")
 async def root():
-    def getRoutes():
-        routes = {}
+    def getRouteParameters():
+        route_params = {}
         for route in app.routes:
-            if hasattr(route, "path"):
-                routes[route.path] = str(route.description)
-        return routes
+            if hasattr(route, "path") and hasattr(route, "dependant"):
+                params = [param.name for param in route.dependant.dependencies if hasattr(param, "name")]
+                params += [param.name for param in route.dependant.query_params]
+                route_params[route.path] = list(set(params))
+        return route_params
     return {
         "message": "Hello, World!",
-        "routes": getRoutes()
+        "routes": getRouteParameters()
     }
 
 if __name__ == "__main__":
