@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from datetime import datetime
+from utils.download import downloadTrack
 import uvicorn
 
 app = FastAPI(openapi_url=None)
@@ -11,6 +12,7 @@ async def downloadTrack(id: str = None, q: str = None, query: str = None):
         return {"error": "Provide either 'id' or 'query', not both."}
     if not q and not id:
         return {"error": "Provide either 'id' or 'query'."}
+    await downloadTrack("1","1")
     return {
         "id": id,
         "query": q,
